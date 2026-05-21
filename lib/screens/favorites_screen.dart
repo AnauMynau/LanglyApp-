@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -8,7 +7,7 @@ class FavoritesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Мои избранные')),
+      appBar: AppBar(title: const Text('My favorites')),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('favorites').snapshots(),
         builder: (context, snapshot) {
@@ -16,7 +15,9 @@ class FavoritesScreen extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return const Center(child: Text('Пока нет избранных уроков'));
+            return const Center(child: Text(
+                'There are no selected lessons yet')
+            );
           }
 
           final favDocs = snapshot.data!.docs;
@@ -29,10 +30,9 @@ class FavoritesScreen extends StatelessWidget {
 
               return ListTile(
                 leading: const Icon(Icons.bookmark, color: Colors.blue),
-                title: Text('Урок ID: $lessonId'),
-                subtitle: const Text('Нажми для перехода'),
+                title: Text('Lesson ID: $lessonId'),
+                subtitle: const Text('Click to go'),
                 onTap: () {
-                  // Здесь можно добавить переход к деталям урока
                 },
               );
             },

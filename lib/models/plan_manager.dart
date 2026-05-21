@@ -39,31 +39,23 @@ class PlanManager extends ChangeNotifier {
     notifyListeners();
   }
 
-  // --- МЕТОДЫ БАЗЫ ДАННЫХ (Работают с памятью телефона) ---
-
-  // 4. Берем подтвержденные планы напрямую из БД!
   Stream<List<PlanItem>> watchOrders() {
     return _dao.watchAllPlans().map((dbItems) {
-      // Конвертируем каждый элемент из формата базы в формат UI
       return dbItems.map((dbItem) => dbPlanItemToPlanItem(dbItem)).toList();
     });
   }
 
-  // 5. Сохраняем оформленный план в БД
   Future<void> submitOrder(String name, bool isSelfStudy) async {
     if (_cartItems.isNotEmpty) {
       for (var item in _cartItems) {
-        // Добавляем имя и формат к уроку
         final finalizedItem = item.copyWith(
           studentName: name,
           isSelfStudy: isSelfStudy,
         );
 
-        // Переводим в формат БД и вставляем в таблицу!
         await _dao.insertPlan(planItemToInsertableDb(finalizedItem));
       }
 
-      // Очищаем локальную корзину
       _cartItems.clear();
       _cartStreamController.sink.add(_cartItems);
       notifyListeners();
@@ -73,7 +65,7 @@ class PlanManager extends ChangeNotifier {
   @override
   void dispose() {
     _cartStreamController.close();
-    _db.close(); // 6. Обязательно закрываем соединение с БД при выходе
+    _db.close();
     super.dispose();
   }
 }

@@ -31,13 +31,12 @@ class _LoginScreenState extends State<LoginScreen> {
         const SnackBar(content: Text('Ошибка! Проверьте данные.')),
       );
     }
-    // Если успех, роутер сам перекинет нас на главный экран (настроим это в след. шаге)
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor, // Фирменный синий фон Langly
+      backgroundColor: Theme.of(context).primaryColor,
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),

@@ -24,7 +24,6 @@ class LessonDetailsScreen extends ConsumerWidget {
           SliverAppBar(
             expandedHeight: 200,
             pinned: true,
-            // Добавляем кнопку сохранения в AppBar
             actions: [
               IconButton(
                 icon: Icon(

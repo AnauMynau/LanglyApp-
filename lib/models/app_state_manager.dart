@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart'; // Для debugPrint
+import 'package:flutter/foundation.dart';
 import 'app_cache.dart';
 import 'lesson.dart';
 import '../network/lesson_service.dart';
-import '../network/model_response.dart'; // Обязательно для проверки Success
+import '../network/model_response.dart';
 
 class AppStateManager extends ChangeNotifier {
   final AppCache _appCache = AppCache();
-  final LessonService _lessonService; // Теперь сервис передается снаружи
+  final LessonService _lessonService;
 
   bool _isInitialized = false;
   bool get isInitialized => _isInitialized;
@@ -49,15 +49,14 @@ class AppStateManager extends ChangeNotifier {
       final response = await _lessonService.queryLessons();
       if (response.isSuccessful) {
         final result = response.body;
-        // Проверяем, что ответ успешный и содержит список уроков
         if (result is Success<List<Lesson>>) {
           _lessons = result.value;
         }
       } else {
-        debugPrint('Ошибка сервера: ${response.statusCode}');
+        debugPrint('Server error: ${response.statusCode}');
       }
     } catch (e) {
-      debugPrint('Ошибка сети: $e');
+      debugPrint('Network error: $e');
     }
 
     _isInitialized = true;

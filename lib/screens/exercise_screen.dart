@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/lesson.dart';
 import '../models/plan_item.dart';
-import '../providers.dart'; // Обязательно импортируем файл с нашими провайдерами
+import '../providers.dart';
 
-// 1. Меняем на ConsumerStatefulWidget
 class ExerciseScreen extends ConsumerStatefulWidget {
   final Exercise exercise;
 
@@ -17,7 +16,6 @@ class ExerciseScreen extends ConsumerStatefulWidget {
   ConsumerState<ExerciseScreen> createState() => _ExerciseScreenState();
 }
 
-// 2. Меняем State на ConsumerState
 class _ExerciseScreenState extends ConsumerState<ExerciseScreen> {
   int _intensity = 1;
 
@@ -53,7 +51,6 @@ class _ExerciseScreenState extends ConsumerState<ExerciseScreen> {
           ),
           const Divider(height: 30),
 
-          // Локальный setState продолжает работать как обычно
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

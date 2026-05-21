@@ -14,20 +14,18 @@ class Card2 extends StatelessWidget {
         ),
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/magazines/card_it.jpg'), // Можешь заменить на другое фото
+            image: AssetImage('assets/magazines/card_it.jpg'),
             fit: BoxFit.cover,
           ),
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
         ),
         child: Column(
           children: [
-            // Блок с информацией об авторе (вверху)
             const AuthorCard(
               authorName: 'Inayatulla',
               title: 'Advanced Learner',
               imageProvider: AssetImage('assets/magazines/profile_pic.jpg'),
             ),
-            // Блок с прогрессом (внизу)
             Expanded(
               child: Stack(
                 children: [
@@ -111,7 +109,6 @@ class _AuthorCardState extends State<AuthorCard> {
               ),
             ],
           ),
-          // 2. configure the icon button and behavior
           IconButton(
             icon: Icon(_isFavorited ? Icons.favorite : Icons.favorite_border),
             color: Colors.red,

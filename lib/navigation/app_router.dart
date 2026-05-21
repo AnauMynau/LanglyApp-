@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_auth/firebase_auth.dart'; // 1. ДОБАВИЛИ ИМПОРТ FIREBASE
-
+import 'package:firebase_auth/firebase_auth.dart';
 import '../screens/not_found_screen.dart';
 import '../home.dart';
-// 2. УБЕДИСЬ, ЧТО ПУТЬ ВЕДЕТ К ТВОЕМУ НОВОМУ ЭКРАНУ ЛОГИНА (login.dart)
 import '../components/login.dart';
 import '../screens/lesson_details_screen.dart';
 import '../models/app_state_manager.dart';
@@ -24,7 +22,6 @@ class AppRouter {
       redirect: (context, state) {
         if (!appState.isInitialized) return null;
 
-        // 3. БЕРЕМ СТАТУС АВТОРИЗАЦИИ НАПРЯМ УЮ ИЗ ОБЛАКА!
         final loggedIn = FirebaseAuth.instance.currentUser != null;
         final isLoggingIn = state.matchedLocation == '/login';
 
@@ -47,7 +44,6 @@ class AppRouter {
           path: '/login',
           builder: (context, state) => const Login(),
         ),
-        // --- ВОТ ЭТОТ КУСОК НУЖНО ДОБАВИТЬ ---
         GoRoute(
           path: '/chat',
           pageBuilder: (context, state) => NoTransitionPage(
@@ -55,7 +51,6 @@ class AppRouter {
             child: Home(onThemeToggle: onThemeToggle, currentTab: 3),
           ),
         ),
-        // ------------------------------------
         GoRoute(
           path: '/lessons',
           pageBuilder: (context, state) => NoTransitionPage(

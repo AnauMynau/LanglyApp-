@@ -4,7 +4,6 @@ import 'card1.dart';
 
 class TopicGridView extends StatelessWidget {
   final List<Lesson> lessons;
-  // УДАЛЕНО: final PlanManager planManager;
 
   const TopicGridView({
     super.key,

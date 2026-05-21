@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../network/auth_service.dart'; // Убедись, что путь к нашему сервису верный
+import '../network/auth_service.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -10,12 +10,10 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  // Контроллеры для считывания текста из полей
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  // Инициализируем наш Firebase-сервис
   final _authService = AuthService();
   bool _isLoading = false;
 
@@ -26,38 +24,31 @@ class _LoginState extends State<Login> {
     super.dispose();
   }
 
-  // Общая функция для входа и регистрации
   Future<void> _submit(bool isLogin) async {
-    // 1. Проверяем, что поля не пустые
     if (!_formKey.currentState!.validate()) return;
 
-    // 2. Включаем крутилку загрузки
     setState(() => _isLoading = true);
 
     final email = _emailController.text;
     final password = _passwordController.text;
 
-    // 3. Обращаемся к Firebase
     final result = isLogin
         ? await _authService.login(email, password)
         : await _authService.register(email, password);
 
     if (!mounted) return;
 
-    // 4. Выключаем крутилку загрузки
     setState(() => _isLoading = false);
 
     if (result == null) {
-      // ОШИБКА: Firebase вернул null (неверный пароль или почта занята)
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Ошибка авторизации. Проверьте email и пароль.'),
+          content: Text('Authorization error. Check your email and password.'),
           backgroundColor: Colors.redAccent,
           duration: Duration(seconds: 2),
         ),
       );
     } else {
-      // УСПЕХ: Пользователь авторизован! Пускаем внутрь приложения
       context.go('/learn');
     }
   }
@@ -65,7 +56,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor, // Фирменный синий фон
+      backgroundColor: Theme.of(context).primaryColor,
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),
@@ -87,7 +78,6 @@ class _LoginState extends State<Login> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // --- ЛОГОТИП / НАЗВАНИЕ ---
                   Text(
                     'Langly',
                     style: TextStyle(
@@ -98,7 +88,6 @@ class _LoginState extends State<Login> {
                   ),
                   const SizedBox(height: 30),
 
-                  // --- ПОЛЕ ДЛЯ EMAIL ---
                   TextFormField(
                     controller: _emailController,
                     decoration: const InputDecoration(
@@ -118,7 +107,6 @@ class _LoginState extends State<Login> {
                   ),
                   const SizedBox(height: 16),
 
-                  // --- ПОЛЕ ДЛЯ ПАРОЛЯ ---
                   TextFormField(
                     controller: _passwordController,
                     decoration: const InputDecoration(
@@ -142,7 +130,6 @@ class _LoginState extends State<Login> {
                   ),
                   const SizedBox(height: 30),
 
-                  // --- КНОПКИ ИЛИ ИНДИКАТОР ЗАГРУЗКИ ---
                   if (_isLoading)
                     const CircularProgressIndicator()
                   else
@@ -150,7 +137,7 @@ class _LoginState extends State<Login> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         ElevatedButton(
-                          onPressed: () => _submit(true), // true = логин
+                          onPressed: () => _submit(true),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Theme.of(context).primaryColor,
                             foregroundColor: Colors.white,
@@ -159,20 +146,26 @@ class _LoginState extends State<Login> {
                               borderRadius: BorderRadius.circular(12),
                             ),
                           ),
-                          child: const Text('Login', style: TextStyle(fontSize: 16)),
+                          child: const Text(
+                              'Login', style: TextStyle(fontSize: 16)
+                          ),
                         ),
                         const SizedBox(height: 10),
                         OutlinedButton(
-                          onPressed: () => _submit(false), // false = регистрация
+                          onPressed: () => _submit(false),
                           style: OutlinedButton.styleFrom(
                             foregroundColor: Theme.of(context).primaryColor,
                             padding: const EdgeInsets.symmetric(vertical: 14),
-                            side: BorderSide(color: Theme.of(context).primaryColor),
+                            side: BorderSide(
+                                color: Theme.of(context).primaryColor
+                            ),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),
                           ),
-                          child: const Text('Sign Up', style: TextStyle(fontSize: 16)),
+                          child: const Text(
+                              'Sign Up', style: TextStyle(fontSize: 16)
+                          ),
                         ),
                       ],
                     ),

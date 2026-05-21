@@ -3,27 +3,22 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class UserDao extends ChangeNotifier {
-  // Получаем доступ к инструментам авторизации Firebase
   final auth = FirebaseAuth.instance;
 
   String errorMsg = 'An error has occurred.';
 
-  // Проверка: вошел ли пользователь в систему
   bool isLoggedIn() {
     return auth.currentUser != null;
   }
 
-  // Получить ID текущего пользователя
   String? userId() {
     return auth.currentUser?.uid;
   }
 
-  // Получить email текущего пользователя
   String? email() {
     return auth.currentUser?.email;
   }
 
-  // --- РЕГИСТРАЦИЯ ---
   Future<String?> signup(String email, String password) async {
     try {
       await auth.createUserWithEmailAndPassword(
@@ -33,7 +28,6 @@ class UserDao extends ChangeNotifier {
       notifyListeners();
       return null;
     } on FirebaseAuthException catch (e) {
-      // ВОТ ЗДЕСЬ МЫ ПРОСТО ВОЗВРАЩАЕМ РЕАЛЬНУЮ ОШИБКУ ОТ GOOGLE
       return e.message;
     } catch (e) {
       log(e.toString());
@@ -41,7 +35,6 @@ class UserDao extends ChangeNotifier {
     }
   }
 
-  // --- ЛОГИН ---
   Future<String?> login(String email, String password) async {
     try {
       await auth.signInWithEmailAndPassword(
@@ -71,7 +64,6 @@ class UserDao extends ChangeNotifier {
     }
   }
 
-  // --- ВЫХОД ИЗ АККАУНТА ---
   void logout() async {
     await auth.signOut();
     notifyListeners();

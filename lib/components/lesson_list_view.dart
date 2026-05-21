@@ -5,7 +5,7 @@ import '../models/app_cache.dart';
 import '../models/app_state_manager.dart';
 import '../models/lesson.dart';
 import '../providers.dart';
-import '../screens/FavoritesScreen.dart';
+import '../screens/favorites_screen.dart';
 import 'card1.dart';
 
 class LessonListView extends ConsumerStatefulWidget {
@@ -56,7 +56,6 @@ class _LessonListViewState extends ConsumerState<LessonListView> {
       body: CustomScrollView(
         physics: const BouncingScrollPhysics(),
         slivers: [
-          // ШАПКА
           SliverAppBar(
             expandedHeight: 120.0,
             pinned: true,
@@ -140,7 +139,7 @@ class _LessonListViewState extends ConsumerState<LessonListView> {
             ),
           ),
 
-          // ПОИСК И ИСТОРИЯ
+          // Search and History
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
@@ -206,7 +205,6 @@ class _LessonListViewState extends ConsumerState<LessonListView> {
             ),
           ),
 
-          // СЕТКА УРОКОВ
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             sliver: SliverGrid(
@@ -223,7 +221,6 @@ class _LessonListViewState extends ConsumerState<LessonListView> {
             ),
           ),
 
-          // АКТИВНОСТЬ ДРУЗЕЙ
           const SliverToBoxAdapter(
             child: Padding(
               padding: EdgeInsets.fromLTRB(20, 30, 20, 10),

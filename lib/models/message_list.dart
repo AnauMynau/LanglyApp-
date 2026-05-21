@@ -33,17 +33,14 @@ class _MessageListState extends ConsumerState<MessageList> {
       ),
       body: Column(
         children: [
-          // Список сообщений
           Expanded(
             child: StreamBuilder<QuerySnapshot>(
               stream: messageDao.getMessageStream(),
               builder: (context, snapshot) {
-                // 1. Обработка загрузки
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
                 }
 
-                // 2. Обработка пустых данных или ошибок
                 if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
                   return const Center(
                     child: Text('No messages yet. Say hi!'),
@@ -70,7 +67,6 @@ class _MessageListState extends ConsumerState<MessageList> {
                         child: const Icon(Icons.delete, color: Colors.white),
                       ),
                       onDismissed: (direction) {
-                        // Удаляем сообщение из базы по его ссылке
                         doc.reference.delete();
                       },
                       child: MessageWidget(

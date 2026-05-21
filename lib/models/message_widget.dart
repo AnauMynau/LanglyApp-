@@ -15,7 +15,6 @@ class MessageWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Показываем email отправителя мелкими буквами над сообщением
           if (email != null) ...[
             Text(
               email!,
@@ -23,7 +22,6 @@ class MessageWidget extends StatelessWidget {
             ),
             const SizedBox(height: 2),
           ],
-          // Сам "пузырь" с текстом сообщения
           Container(
             decoration: BoxDecoration(
               color: Colors.blue[100],
@@ -36,7 +34,6 @@ class MessageWidget extends StatelessWidget {
                 children: [
                   Text(message, style: const TextStyle(fontSize: 16)),
                   const SizedBox(height: 5),
-                  // Форматируем дату (например, 14:30)
                   Text(
                     DateFormat('hh:mm a').format(date),
                     style: const TextStyle(fontSize: 10, color: Colors.black54),
