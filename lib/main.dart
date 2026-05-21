@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart' as p;
 import 'package:logging/logging.dart';
 import 'models/app_cache.dart';
@@ -61,6 +62,16 @@ class DuoApp extends StatefulWidget {
 class _DuoAppState extends State<DuoApp> {
   ThemeMode _themeMode = ThemeMode.light;
 
+  late final GoRouter _router;
+
+  @override
+  void initState() {
+    super.initState();
+    final appState = p.Provider.of<AppStateManager>(context, listen: false);
+
+    _router = AppRouter.createRouter(appState, _toggleTheme);
+  }
+
   void _toggleTheme() {
     setState(() {
       _themeMode = (_themeMode == ThemeMode.light)
@@ -70,17 +81,14 @@ class _DuoAppState extends State<DuoApp> {
 
   @override
   Widget build(BuildContext context) {
-    return p.Consumer<AppStateManager>(
-      builder: (context, appState, child) {
-        return MaterialApp.router(
-          routerConfig: AppRouter.createRouter(appState, _toggleTheme),
-          title: 'Langly',
-          theme: LanglyTheme.light(),
-          darkTheme: LanglyTheme.dark(),
-          themeMode: _themeMode,
-          debugShowCheckedModeBanner: false,
-        );
-      },
+    return MaterialApp.router(
+      routerConfig: _router,
+      title: 'Langly',
+      theme: LanglyTheme.light(),
+      darkTheme: LanglyTheme.dark(),
+      themeMode: _themeMode,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
+
