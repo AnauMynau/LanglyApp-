@@ -1,0 +1,126 @@
+{
+  "results": [
+    {
+      "id": "1",
+      "language": "USA",
+      "category": "Grammar",
+      "title": "Master the Tenses",
+      "description": "The foundation of English. Learn Present Simple and Continuous.",
+      "imagePath": "assets/magazines/card_it.jpg",
+      "duration": "15 min",
+      "exercises": [
+        {
+          "title": "Present Simple Rules",
+          "duration": "5 min",
+          "content": "Use Present Simple for habits."
+        },
+        {
+          "title": "Tense Quiz",
+          "duration": "10 min",
+          "content": "I (go/am going) to school."
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "language": "USA",
+      "category": "Business",
+      "title": "Business Meetings",
+      "description": "Professional vocabulary for your career.",
+      "imagePath": "assets/magazines/business.jpg",
+      "duration": "10 min",
+      "exercises": [
+        {
+          "title": "Greetings",
+          "duration": "3 min",
+          "content": "Hello everyone..."
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "language": "Spain",
+      "category": "Basics",
+      "title": "Hola, Amigos!",
+      "description": "Start your Spanish journey here.",
+      "imagePath": "assets/flags/spain.jpg",
+      "duration": "10 min",
+      "exercises": [
+        {
+          "title": "Greetings",
+          "duration": "5 min",
+          "content": "Hola, Как дела?"
+        },
+        {
+          "title": "Intro",
+          "duration": "5 min",
+          "content": "Me llamo Inayatulla."
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "language": "Spain",
+      "category": "Food",
+      "title": "Tapas & Drinks",
+      "description": "How to order the best food in Spain.",
+      "imagePath": "assets/magazines/ordering.jpg",
+      "duration": "12 min",
+      "exercises": [
+        {
+          "title": "Menu",
+          "duration": "6 min",
+          "content": "Paella, Tortilla, Jamon."
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "language": "Russia",
+      "category": "Alphabet",
+      "title": "Cyrillic Basics",
+      "description": "Master the Russian alphabet.",
+      "imagePath": "assets/flags/russia.jpg",
+      "duration": "25 min",
+      "exercises": [
+        {
+          "title": "Reading",
+          "duration": "15 min",
+          "content": "Р is R, Н is N..."
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "language": "France",
+      "category": "Romance",
+      "title": "Love in Paris",
+      "description": "Useful phrases for a romantic trip.",
+      "imagePath": "assets/magazines/travel.jpg",
+      "duration": "15 min",
+      "exercises": [
+        {
+          "title": "Cafe Talk",
+          "duration": "10 min",
+          "content": "On prend un café?"
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "language": "Germany",
+      "category": "Grammar",
+      "title": "Der, Die, Das",
+      "description": "The nightmare of every German learner.",
+      "imagePath": "assets/magazines/grammar.jpg",
+      "duration": "20 min",
+      "exercises": [
+        {
+          "title": "Articles",
+          "duration": "10 min",
+          "content": "Der Tisch, Die Lampe..."
+        }
+      ]
+    }
+  ]
+}
