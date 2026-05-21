@@ -1,16 +1,39 @@
-# Yummy
+# Langly: Smart Language Acquisition App
 
-A new Flutter project.
+Langly is a high-performance cross-platform mobile application designed to streamline the language learning process. Built with Flutter, this app focuses on immersive UI/UX, reactive state management, and real-time cloud connectivity.
 
-## Getting Started
+## Key Features
 
-This project is a starting point for a Flutter application.
+* **Reactive UI:** Smooth transitions and micro-animations using `AnimatedOpacity`, `AnimatedSwitcher`, and `AnimatedContainer`.
+* **Smart Search:** Real-time course filtering with persistent local search history.
+* **State Management:** Hybrid architecture using **Riverpod** for declarative logic and **Provider** for legacy state sync.
+* **Cloud Connectivity:** Integrated **Firebase Cloud Messaging (FCM)** for engagement-driving push notifications.
+* **Declarative Navigation:** Seamless routing and deep-linking implementation via **GoRouter**.
+* **Dynamic Theming:** Instant light/dark mode switching with persistent cache storage.
+* **Production Ready:** Fully signed Android release build (APK) with optimized assets.
 
-A few resources to get you started if this is your first Flutter project:
+## Tech Stack
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+* **Framework:** Flutter (Dart)
+* **Backend:** Firebase (Cloud Messaging, Auth, Firestore)
+* **State Management:** Riverpod, Provider
+* **Navigation:** GoRouter
+* **Build System:** Gradle (Kotlin DSL)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Project Architecture
+
+Langly follows the **Separation of Concerns** principle to ensure testability and scalability:
+
+* `/models`: Data structures and state management logic.
+* `/network`: API services and Firebase communication layer.
+* `/navigation`: Declarative routing configuration.
+* `/theme`: Custom theme definitions for light/dark modes.
+
+## Testing
+
+The project includes unit and widget tests to ensure the stability of core features like search logic, theme toggling, and button interactions.
+
+Run tests locally:
+```bash
+flutter test
+```
